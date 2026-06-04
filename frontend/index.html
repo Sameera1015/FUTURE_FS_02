@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Lead Manager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Login View -->
+    <div id="login-view" class="login-wrapper">
+        <div class="login-card card">
+            <h2>Welcome Back</h2>
+            <p class="login-subtitle">Sign in to Client Lead Manager</p>
+            <div id="login-error" class="error-message hidden">Invalid username or password</div>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" required placeholder="Enter username">
+                    <div class="input-hint">Hint: admin</div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required placeholder="Enter password">
+                    <div class="input-hint">Hint: admin123</div>
+                </div>
+                <button type="submit" class="btn btn-primary login-btn">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- CRM View -->
+    <div id="crm-view" class="hidden">
+        <header class="header">
+            <div class="header-content">
+                <h1>Client Lead Manager</h1>
+                <button id="logout-btn" class="btn btn-secondary btn-small">Logout</button>
+            </div>
+        </header>
+
+        <main class="main-container">
+        <!-- Dashboard Statistics -->
+        <section class="dashboard">
+            <div class="stat-card">
+                <h3>Total Leads</h3>
+                <p id="stat-total" class="stat-number">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>New Leads</h3>
+                <p id="stat-new" class="stat-number stat-blue">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Contacted Leads</h3>
+                <p id="stat-contacted" class="stat-number stat-yellow">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Converted Leads</h3>
+                <p id="stat-converted" class="stat-number stat-green">0</p>
+            </div>
+        </section>
+
+        <!-- Controls Section: Search and Filter -->
+        <section class="controls">
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search by name or email...">
+            </div>
+            <div class="filter-container">
+                <label for="filter-status">Filter:</label>
+                <select id="filter-status">
+                    <option value="All">All Statuses</option>
+                    <option value="New">New</option>
+                    <option value="Contacted">Contacted</option>
+                    <option value="Converted">Converted</option>
+                </select>
+            </div>
+        </section>
+
+        <div class="content-split">
+            <!-- Lead Form Area -->
+            <section class="form-section card">
+                <h2 id="form-title">Add New Lead</h2>
+                <form id="lead-form">
+                    <input type="hidden" id="lead-id">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" required placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required placeholder="john@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" required placeholder="+1 234 567 890">
+                    </div>
+                    <div class="form-group">
+                        <label for="source">Source</label>
+                        <select id="source" required>
+                            <option value="Website">Website</option>
+                            <option value="Instagram">Instagram</option>
+                            <option value="Facebook">Facebook</option>
+                            <option value="Referral">Referral</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <select id="status" required>
+                            <option value="New">New</option>
+                            <option value="Contacted">Contacted</option>
+                            <option value="Converted">Converted</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="notes">Notes</label>
+                        <textarea id="notes" rows="4" placeholder="Any additional notes..."></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary" id="submit-btn">Save Lead</button>
+                        <button type="button" class="btn btn-secondary hidden" id="cancel-btn">Cancel Edit</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Leads Table Area -->
+            <section class="table-section card">
+                <h2>All Leads</h2>
+                <div class="table-responsive">
+                    <table id="leads-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Contact Info</th>
+                                <th>Source</th>
+                                <th>Status</th>
+                                <th>Notes</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leads-tbody">
+                            <!-- Rows will be populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Modal for Delete Confirmation -->
+    <div id="delete-modal" class="modal hidden">
+        <div class="modal-content">
+            <h3>Confirm Deletion</h3>
+            <p>Are you sure you want to delete this lead? This action cannot be undone.</p>
+            <div class="modal-actions">
+                <button id="confirm-delete-btn" class="btn btn-danger">Delete</button>
+                <button id="cancel-delete-btn" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    </div> <!-- End of crm-view -->
+
+    <script src="app.js"></script>
+</body>
+</html>
