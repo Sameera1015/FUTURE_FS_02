@@ -146,17 +146,12 @@ body {
     gap: 2rem;
 }
 
-@media (max-width: 1024px) {
-    .content-split {
-        grid-template-columns: 1fr;
-    }
-}
-
 .card {
     background-color: var(--bg-card);
     border-radius: var(--border-radius-lg);
     border: 1px solid var(--border-color);
     padding: 1.5rem;
+    min-width: 0;
 }
 
 .card h2 {
@@ -432,20 +427,67 @@ tbody tr:hover {
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
+    /* Stack Layout Vertically */
+    .content-split {
+        grid-template-columns: 1fr;
+    }
+
+    /* Stat Cards 2x2 Grid */
+    .dashboard {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    /* Prevent iOS zoom by ensuring inputs are 16px */
+    .form-group input, .form-group select, .form-group textarea, .search-container input, .filter-container select {
+        font-size: 16px;
+    }
+
+    /* Tap-friendly buttons */
+    .btn {
+        padding: 1rem 1.5rem;
+    }
+    .btn-small {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    /* Full-width Search and Filter */
     .controls {
         flex-direction: column;
         align-items: stretch;
     }
-    
-    .search-container input {
+    .search-container input, .filter-container select {
         width: 100%;
     }
-    
+    .filter-container {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    /* Header & Main spacing adjustments */
     .header {
         padding: 1rem;
     }
-    
+    .header-content {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    .header-content h1 {
+        font-size: 1.3rem;
+    }
     .main-container {
         padding: 1rem;
+    }
+
+    /* Login page clean up */
+    .login-wrapper {
+        padding: 1rem;
+        align-items: flex-start;
+        padding-top: 20vh;
+    }
+    .login-card {
+        padding: 2rem 1.5rem;
     }
 }
