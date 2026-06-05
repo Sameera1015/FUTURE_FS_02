@@ -4,7 +4,7 @@
  */
 
 // Configuration
-const API_URL = 'http://localhost:5000/api/leads';
+const API_URL = 'https://future-fs-02-mcuy.onrender.com/api/leads';
 
 // Local State (Fallback if API is unavailable)
 let leads = [];
@@ -96,7 +96,7 @@ function handleLogout() {
 
 /**
  * API Service Wrapper
- * All API calls go to http://localhost:5000/api/leads
+ * All API calls go to https://future-fs-02-mcuy.onrender.com/api/leads
  */
 
 function setTableLoading() {
